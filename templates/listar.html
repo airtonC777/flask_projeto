@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Pagamentos</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; }
+    h1 { color: #333; }
+    .container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+    th, td { padding: 8px; border-bottom: 1px solid #ddd; text-align: center; }
+    th { background-color: #f0f0f0; }
+    .actions { margin-top: 20px; display: flex; gap: 10px; }
+    .btn {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      color: white;
+    }
+    .btn-edit { background-color: #2196F3; }
+    .btn-edit:hover { background-color: #1976D2; }
+    .btn-delete { background-color: #f44336; }
+    .btn-delete:hover { background-color: #d32f2f; }
+    .btn-comprovante { background-color: #9C27B0; }
+    .btn-comprovante:hover { background-color: #7B1FA2; }
+    .btn-export { background-color: #4CAF50; }
+    .btn-export:hover { background-color: #45a049; }
+    .btn-new { background-color: #ff9800; }
+    .btn-new:hover { background-color: #e68900; }
+    .search-box { margin-bottom: 15px; }
+    .search-box input[type="text"] {
+      padding: 8px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .search-box button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: #2196F3;
+      color: white;
+      cursor: pointer;
+    }
+    .search-box button:hover { background-color: #1976D2; }
+  </style>
+</head>
+<body>
+  <h1>Lista de Pagamentos</h1>
+  <div class="container">
+
+    <!-- Barra de busca -->
+    <form method="get" action="{{ url_for('listar') }}" class="search-box">
+      <input type="text" name="busca" placeholder="Buscar..." value="{{ termo or '' }}">
+      <button type="submit">Pesquisar</button>
+    </form>
+
+    <!-- Tabela de registros -->
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Clube</th>
+        <th>Igreja</th>
+        <th>Região</th>
+        <th>Categoria</th>
+        <th>Janeiro</th>
+        <th>Fevereiro</th>
+        <th>Março</th>
+        <th>Abril</th>
+        <th>Maio</th>
+        <th>Junho</th>
+        <th>Julho</th>
+        <th>Agosto</th>
+        <th>Setembro</th>
+        <th>Outubro</th>
+        <th>Novembro</th>
+        <th>Dezembro</th>
+        <th>Total</th>
+        <th>Ações</th>
+      </tr>
+      {% for p in pagamentos %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.clube }}</td>
+        <td>{{ p.igreja }}</td>
+        <td>{{ p.regiao }}</td>
+        <td>{{ p.categoria }}</td>
+        <td>{{ p.janeiro }}</td>
+        <td>{{ p.fevereiro }}</td>
+        <td>{{ p.marco }}</td>
+        <td>{{ p.abril }}</td>
+        <td>{{ p.maio }}</td>
+        <td>{{ p.junho }}</td>
+        <td>{{ p.julho }}</td>
+        <td>{{ p.agosto }}</td>
+        <td>{{ p.setembro }}</td>
+        <td>{{ p.outubro }}</td>
+        <td>{{ p.novembro }}</td>
+        <td>{{ p.dezembro }}</td>
+        <td>{{ p.total }}</td>
+        <td>
+          <a href="{{ url_for('editar', pagamento_id=p.id) }}" class="btn btn-edit">Editar</a>
+          <a href="{{ url_for('excluir', pagamento_id=p.id) }}" class="btn btn-delete"
+             onclick="return confirm('Tem certeza que deseja excluir este registro?')">Excluir</a>
+          <a href="{{ url_for('comprovante', pagamento_id=p.id) }}" class="btn btn-comprovante" target="_blank">Comprovante</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <!-- Botões extras -->
+    <div class="actions">
+      <a href="{{ url_for('exportar_excel') }}" class="btn btn-export">Exportar Excel</a>
+      <a href="{{ url_for('formulario') }}" class="btn btn-new">Novo Pagamento</a>
+    </div>
+  </div>
+</body>
+</html>

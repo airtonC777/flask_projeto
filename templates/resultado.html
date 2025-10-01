@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado do Pagamento</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; }
+        h1 { color: #333; }
+        .container { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        p { margin: 6px 0; }
+        strong { color: #222; }
+        .actions { margin-top: 20px; }
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+        }
+        .btn-comprovante { background-color: #9C27B0; }
+        .btn-comprovante:hover { background-color: #7B1FA2; }
+        .btn-voltar { background-color: #2196F3; }
+        .btn-voltar:hover { background-color: #1976D2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado do Pagamento</h1>
+
+        {% if dados.id %}<p><strong>ID:</strong> {{ dados.id }}</p>{% endif %}
+        {% if dados.clube %}<p><strong>Clube:</strong> {{ dados.clube }}</p>{% endif %}
+        {% if dados.igreja %}<p><strong>Igreja:</strong> {{ dados.igreja }}</p>{% endif %}
+        {% if dados.regiao %}<p><strong>Região:</strong> {{ dados.regiao }}</p>{% endif %}
+        {% if dados.categoria %}<p><strong>Categoria:</strong> {{ dados.categoria }}</p>{% endif %}
+
+        {% if dados.janeiro %}<p>Janeiro: {{ dados.janeiro }}</p>{% endif %}
+        {% if dados.fevereiro %}<p>Fevereiro: {{ dados.fevereiro }}</p>{% endif %}
+        {% if dados.marco %}<p>Março: {{ dados.marco }}</p>{% endif %}
+        {% if dados.abril %}<p>Abril: {{ dados.abril }}</p>{% endif %}
+        {% if dados.maio %}<p>Maio: {{ dados.maio }}</p>{% endif %}
+        {% if dados.junho %}<p>Junho: {{ dados.junho }}</p>{% endif %}
+        {% if dados.julho %}<p>Julho: {{ dados.julho }}</p>{% endif %}
+        {% if dados.agosto %}<p>Agosto: {{ dados.agosto }}</p>{% endif %}
+        {% if dados.setembro %}<p>Setembro: {{ dados.setembro }}</p>{% endif %}
+        {% if dados.outubro %}<p>Outubro: {{ dados.outubro }}</p>{% endif %}
+        {% if dados.novembro %}<p>Novembro: {{ dados.novembro }}</p>{% endif %}
+        {% if dados.dezembro %}<p>Dezembro: {{ dados.dezembro }}</p>{% endif %}
+
+        {% if dados.total %}<p><strong>Total:</strong> {{ dados.total }}</p>{% endif %}
+
+        <div class="actions">
+            <a href="{{ url_for('comprovante', pagamento_id=dados.id) }}" class="btn btn-comprovante" target="_blank">Gerar Comprovante (PDF)</a>
+            <a href="{{ url_for('listar') }}" class="btn btn-voltar">Voltar à Lista</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Pagamento</title>
+</head>
+<body>
+    <h1>Editar Pagamento</h1>
+    <form method="post">
+        <label for="id">ID:</label>
+        <input type="number" id="id" name="id" value="{{ pagamento.id }}" required min="1" step="1"><br>
+
+        <label for="clube">Clube:</label>
+        <input type="text" id="clube" name="clube" value="{{ pagamento.clube }}" required><br>
+
+        <label for="igreja">Igreja:</label>
+        <input type="text" id="igreja" name="igreja" value="{{ pagamento.igreja }}" required><br>
+
+        <label for="categoria">Categoria:</label>
+        <select name="categoria" id="categoria" required>
+            <option value="">Selecione</option>
+            <option>Aventureiros</option>
+            <option>Desbravadores</option>
+            <option>Embaixadores JA</option>
+            <option>Lideres</option>
+        </select><br>
+
+        <label for="regiao">Região:</label>
+        <select name="regiao" id="regiao" required>
+            <option value="">Selecione</option>
+            <option>Centro de Viana</option>
+            <option>Sul de Viana</option>
+            <option>Samba e Maianga</option>
+            <option>Zango e Icolo & Bengo</option>
+            <option>Kilamba Kiaxe - A</option>
+            <option>Kilamba Kiaxe - B</option>
+            <option>Talatona Norte</option>
+            <option>Talatona Sul</option>
+            <option>Cabinda</option>
+        </select><br>
+
+        <label for="janeiro">Janeiro:</label>
+        <input type="number" id="janeiro" name="janeiro" value="{{ pagamento.janeiro }}" required min="0" step="0.01"><br>
+
+        <label for="fevereiro">Fevereiro:</label>
+        <input type="number" id="fevereiro" name="fevereiro" value="{{ pagamento.fevereiro }}" required min="0" step="0.01"><br>
+
+        <label for="marco">Março:</label>
+        <input type="number" id="marco" name="marco" value="{{ pagamento.marco }}" required min="0" step="0.01"><br>
+
+        <label for="abril">Abril:</label>
+        <input type="number" id="abril" name="abril" value="{{ pagamento.abril }}" required min="0" step="0.01"><br>
+
+        <label for="maio">Maio:</label>
+        <input type="number" id="maio" name="maio" value="{{ pagamento.maio }}" required min="0" step="0.01"><br>
+
+        <label for="junho">Junho:</label>
+        <input type="number" id="junho" name="junho" value="{{ pagamento.junho }}" required min="0" step="0.01"><br>
+
+        <label for="julho">Julho:</label>
+        <input type="number" id="julho" name="julho" value="{{ pagamento.julho }}" required min="0" step="0.01"><br>
+
+        <label for="agosto">Agosto:</label>
+        <input type="number" id="agosto" name="agosto" value="{{ pagamento.agosto }}" required min="0" step="0.01"><br>
+
+        <label for="setembro">Setembro:</label>
+        <input type="number" id="setembro" name="setembro" value="{{ pagamento.setembro }}" required min="0" step="0.01"><br>
+
+        <label for="outubro">Outubro:</label>
+        <input type="number" id="outubro" name="outubro" value="{{ pagamento.outubro }}" required min="0" step="0.01"><br>
+
+        <label for="novembro">Novembro:</label>
+        <input type="number" id="novembro" name="novembro" value="{{ pagamento.novembro }}" required min="0" step="0.01"><br>
+
+        <label for="dezembro">Dezembro:</label>
+        <input type="number" id="dezembro" name="dezembro" value="{{ pagamento.dezembro }}" required min="0" step="0.01"><br>
+
+        <label for="total">Total:</label>
+        <input type="number" id="total" name="total" value="{{ pagamento.total }}" required min="0" step="0.01"><br>
+
+        <button type="submit">Salvar Alterações</button>
+        <a href="{{ url_for('listar') }}">Voltar à Lista</a>
+    </form>
+</body>
+</html>
