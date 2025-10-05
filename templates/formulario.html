@@ -7,19 +7,18 @@
     <style>
         body { background-color: #f8f9fa; }
         .container {
-            max-width: 800px;
-            margin-top: 40px;
+            max-width: 900px;
+            margin-top: 30px;
             padding: 20px;
             background: white;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
-        h1 { text-align: center; margin-bottom: 30px; }
+        h1 { text-align: center; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- Cabeçalho dinâmico -->
     <h1>
         {% if categoria_header %}
             {{ categoria_header }} - Cadastro de Pagamento
@@ -28,20 +27,31 @@
         {% endif %}
     </h1>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, msg in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
     <form method="POST">
-        <div class="row mb-3">
-            <div class="col">
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
                 <label>Clube:</label>
                 <input type="text" name="clube" class="form-control" required>
             </div>
-            <div class="col">
+            <div class="col-md-6">
                 <label>Igreja:</label>
                 <input type="text" name="igreja" class="form-control" required>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
                 <label>Região:</label>
                 <select name="regiao" class="form-control" required>
                     <option value="">Selecione...</option>
@@ -56,7 +66,7 @@
                     <option value="Cabinda">Cabinda</option>
                 </select>
             </div>
-            <div class="col">
+            <div class="col-md-6">
                 <label>Categoria:</label>
                 <select name="categoria" class="form-control" required>
                     <option value="">Selecione...</option>
@@ -69,32 +79,38 @@
             </div>
         </div>
 
-        <!-- Total (calculado automaticamente) -->
-        <div class="mb-3">
-            <label>Total:</label>
-            <input type="text" id="total" name="total" class="form-control" readonly required>
+        <!-- Campo Ano (novo) -->
+        <div class="row g-3 mb-3">
+            <div class="col-md-4">
+                <label for="ano" class="form-label">Ano:</label>
+                <input type="number" id="ano" name="ano" class="form-control" min="1900" max="2100" placeholder="Ex: 2025" required>
+            </div>
+            <div class="col-md-8">
+                <label>Total:</label>
+                <input type="text" id="total" name="total" class="form-control" readonly required>
+            </div>
         </div>
 
         <!-- Meses -->
-        <div class="row mb-3">
-            <div class="col"><label>Janeiro:</label><input type="number" step="0.01" name="janeiro" class="form-control mes" value="0"></div>
-            <div class="col"><label>Fevereiro:</label><input type="number" step="0.01" name="fevereiro" class="form-control mes" value="0"></div>
-            <div class="col"><label>Março:</label><input type="number" step="0.01" name="marco" class="form-control mes" value="0"></div>
+        <div class="row g-3 mb-2">
+            <div class="col-md-4"><label>Janeiro:</label><input type="number" step="0.01" name="janeiro" class="form-control mes" value="0"></div>
+            <div class="col-md-4"><label>Fevereiro:</label><input type="number" step="0.01" name="fevereiro" class="form-control mes" value="0"></div>
+            <div class="col-md-4"><label>Março:</label><input type="number" step="0.01" name="marco" class="form-control mes" value="0"></div>
         </div>
-        <div class="row mb-3">
-            <div class="col"><label>Abril:</label><input type="number" step="0.01" name="abril" class="form-control mes" value="0"></div>
-            <div class="col"><label>Maio:</label><input type="number" step="0.01" name="maio" class="form-control mes" value="0"></div>
-            <div class="col"><label>Junho:</label><input type="number" step="0.01" name="junho" class="form-control mes" value="0"></div>
+        <div class="row g-3 mb-2">
+            <div class="col-md-4"><label>Abril:</label><input type="number" step="0.01" name="abril" class="form-control mes" value="0"></div>
+            <div class="col-md-4"><label>Maio:</label><input type="number" step="0.01" name="maio" class="form-control mes" value="0"></div>
+            <div class="col-md-4"><label>Junho:</label><input type="number" step="0.01" name="junho" class="form-control mes" value="0"></div>
         </div>
-        <div class="row mb-3">
-            <div class="col"><label>Julho:</label><input type="number" step="0.01" name="julho" class="form-control mes" value="0"></div>
-            <div class="col"><label>Agosto:</label><input type="number" step="0.01" name="agosto" class="form-control mes" value="0"></div>
-            <div class="col"><label>Setembro:</label><input type="number" step="0.01" name="setembro" class="form-control mes" value="0"></div>
+        <div class="row g-3 mb-2">
+            <div class="col-md-4"><label>Julho:</label><input type="number" step="0.01" name="julho" class="form-control mes" value="0"></div>
+            <div class="col-md-4"><label>Agosto:</label><input type="number" step="0.01" name="agosto" class="form-control mes" value="0"></div>
+            <div class="col-md-4"><label>Setembro:</label><input type="number" step="0.01" name="setembro" class="form-control mes" value="0"></div>
         </div>
-        <div class="row mb-3">
-            <div class="col"><label>Outubro:</label><input type="number" step="0.01" name="outubro" class="form-control mes" value="0"></div>
-            <div class="col"><label>Novembro:</label><input type="number" step="0.01" name="novembro" class="form-control mes" value="0"></div>
-            <div class="col"><label>Dezembro:</label><input type="number" step="0.01" name="dezembro" class="form-control mes" value="0"></div>
+        <div class="row g-3 mb-3">
+            <div class="col-md-4"><label>Outubro:</label><input type="number" step="0.01" name="outubro" class="form-control mes" value="0"></div>
+            <div class="col-md-4"><label>Novembro:</label><input type="number" step="0.01" name="novembro" class="form-control mes" value="0"></div>
+            <div class="col-md-4"><label>Dezembro:</label><input type="number" step="0.01" name="dezembro" class="form-control mes" value="0"></div>
         </div>
 
         <!-- Botões -->
@@ -103,25 +119,28 @@
     </form>
 </div>
 
-<!-- Script para calcular automaticamente o total -->
 <script>
     function calcularTotal() {
         let soma = 0;
         document.querySelectorAll(".mes").forEach(input => {
-            let valor = parseFloat(input.value) || 0;
-            soma += valor;
+            const raw = input.value;
+            let v = 0;
+            if (raw !== null && raw !== "") {
+                v = parseFloat(String(raw).replace(",", ".")) || 0;
+            }
+            soma += v;
         });
         document.getElementById("total").value = soma.toFixed(2);
     }
 
-    // Eventos
     document.querySelectorAll(".mes").forEach(input => {
         input.addEventListener("input", calcularTotal);
     });
 
-    // Calcula total inicial
+    // Atualiza total ao carregar a página (valores iniciais)
     calcularTotal();
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

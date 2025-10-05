@@ -33,7 +33,13 @@
         {% if dados.clube %}<p><strong>Clube:</strong> {{ dados.clube }}</p>{% endif %}
         {% if dados.igreja %}<p><strong>Igreja:</strong> {{ dados.igreja }}</p>{% endif %}
         {% if dados.regiao %}<p><strong>Região:</strong> {{ dados.regiao }}</p>{% endif %}
-        {% if dados.categoria %}<p><strong>Categoria:</strong> {{ dados.categoria }}</p>{% endif %}
+
+        {% if dados.categoria or dados.ano %}
+            <p><strong>Categoria / Ano:</strong>
+                {% if dados.categoria %}{{ dados.categoria }}{% endif %}
+                {% if dados.ano %} / {{ dados.ano }}{% endif %}
+            </p>
+        {% endif %}
 
         {% if dados.janeiro %}<p>Janeiro: {{ dados.janeiro }}</p>{% endif %}
         {% if dados.fevereiro %}<p>Fevereiro: {{ dados.fevereiro }}</p>{% endif %}
